@@ -23,16 +23,16 @@ const Welcome = () => {
     }
 
     return (
-        <div>
+        <div id='welcome'>
             <div>
                 <p>Welcome</p>
                 <p>to the</p>
                 <p>GREED GAME</p>
             </div>
             <div>
-                <button onClick={()=>chooser('computer')}>Play with Computer</button>
-                <button onClick={()=>chooser('friend')}>Play with Friend</button>
-                <button onClick={openModal}>Rules</button>
+                <button onClick={()=>chooser('computer')} className='tablet'>Play with Computer</button>
+                <button onClick={()=>chooser('friend')} className='tablet'>Play with Friend</button>
+                <button onClick={openModal} className='tablet'>Rules</button>
             </div>
             <Modal
                 isOpen={modalState}
@@ -41,14 +41,14 @@ const Welcome = () => {
             >
                 <h2>RULES</h2>
                 <ol>
-                    <li>Each player tosses the dice as many times as possible</li>
+                    <li>Each player throws the dice as many times as desired</li>
                     <li>Rolling the number 1 on the dice means everything 
                     in your temporary bank gets wiped and the game is passed on to your opponent</li>
                     <li>Rolling consecutive 6 means everything in your main bank gets wipped and 
                         the game is passed on to your opponent</li>
                     <li>first to reach the set target from the main bank wins the game</li>
                 </ol>
-                <button onClick={closeModal}>CLOSE</button>   
+                <button onClick={closeModal}>CLOSE</button> 
             </Modal>
         </div>
     )   

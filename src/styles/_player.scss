@@ -1,0 +1,112 @@
+#player {
+    height: fit-content;
+    width: 11rem;
+    background-color: whitesmoke;
+    background-image: linear-gradient(whitesmoke,whitesmoke,rgb(196, 196, 247));
+    border-radius: 0.6rem;
+    -webkit-border-radius: 0.6rem;
+    -moz-border-radius: 0.6rem;
+    -ms-border-radius: 0.6rem;
+    -o-border-radius: 0.6rem;
+    box-shadow: 1px 1px 5px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.5rem;
+
+    p:first-of-type {
+        padding-top:0.3rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+    }
+
+    p:nth-of-type(2) {
+        font-weight: 500;
+        font-size: 1.3rem;
+    }
+
+    p {
+        padding-bottom: 1rem;
+    }
+
+    @keyframes blink {
+        0% {
+            color:black;
+        }
+
+        5% {
+            opacity: 0;
+        }
+
+        25% {
+            opacity: 1;
+            color:blue;
+        }
+
+        30% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+            color: purple;
+        }
+
+        55% {
+            opacity: 0;
+        }
+
+        75% {
+            opacity: 1;
+            color: green;
+        }
+
+        80% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+            color: red;
+        }
+    }
+
+    >div {
+        font-weight: 700;
+        font-size: 1.5rem;
+        animation-name: blink;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+    }
+}
+
+#player.active {
+    background-image: linear-gradient(rgb(240, 46, 46),rgb(224, 22, 22));
+    color: whitesmoke;
+}
+
+@media screen and (min-width:600px) {
+    #player {
+        width: 30vw;
+        height: 20vw;
+        max-height: 16rem;
+    }
+}
+
+@media screen and (min-width:900px) {
+    #player {
+        justify-content: space-around;
+        align-items: center;
+        font-size: 1.5rem;
+
+        >p:nth-of-type(2) {
+            font-size: 2rem;
+        }
+
+        >p:last-child {
+            font-size: 1rem;
+        }
+    }
+}
+

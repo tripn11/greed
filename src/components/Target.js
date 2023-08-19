@@ -32,12 +32,15 @@ const Target = () => {
     }
 
     return (
-        <div>
-            <input 
-                value={value}
-                onChange={update}
-            />
-            <button onClick={startGame}>Start Game</button>
+        <div id="target">
+            <div>
+                <p>Set Target</p>
+                <input 
+                    value={value}
+                    onChange={update}
+                />
+                <button onClick={startGame}>Start Game</button>
+            </div>
         </div>
     )
 }

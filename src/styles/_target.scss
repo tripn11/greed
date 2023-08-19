@@ -1,0 +1,42 @@
+#target {
+    height: 100vh;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    >div {
+        background-color: whitesmoke;
+        width: 70%;
+        max-width: 25rem;
+        padding: 2rem;
+        text-align: center;
+        border: 1px solid none;
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        box-shadow: 0.1rem 0.1rem 0.8rem black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        >p {
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        >input {
+            width: 5rem;
+            padding: 0.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        >button {
+            padding: 1rem;
+        }
+    }
+}

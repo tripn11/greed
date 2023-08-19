@@ -1,3 +1,5 @@
-body {
-    height: 100vh;
-}
+@import './base';
+@import './welcome';
+@import './target';
+@import './player';
+@import './game';
