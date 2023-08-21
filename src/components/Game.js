@@ -22,6 +22,9 @@ const Game = () =>{
     const [user2, setUser2] = useState({bank:0,temp:0})
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [consecSix, setConsecSix] = useState(false);
+    const [enough, setEnough] = useState(false);
+    const [computerConsecTracker, setComputerConsecTracker] = useState(0);
+    const [computerConsec,setComputerConsec] = useState(false);
 
 
     useEffect(()=>{
@@ -36,6 +39,20 @@ const Game = () =>{
     },[rolled])
 
     useEffect(()=>{
+        if(score===6) {
+            setComputerConsecTracker(prev=>prev+1)
+        }else {
+            setComputerConsecTracker(0);
+        }
+    },[score,rolled])
+
+    useEffect(()=> {
+        if(computerConsecTracker > 1) {
+            setComputerConsec(true)
+        }
+    },[computerConsecTracker])
+
+    useEffect(()=>{
         if(user1.bank>=target || user2.bank>=target) {
             setButtonDisabled(true)
         }
@@ -45,14 +62,31 @@ const Game = () =>{
         if (opponent === 'computer' && !activeUser) {
             let computerRolls = 0;
             setButtonDisabled(true)
-            const expected = Math.ceil(1 + (Math.random() * 3))
+            const expected = Math.ceil(1 + Math.random() * 3)
             const computerRollInterval = setInterval(() => {
                 if (activeUser || user1.bank >= target || user2.bank >= target) {
                     clearInterval(computerRollInterval);
                     return;
-                }
-    
+                }   
                 if (computerRolls < expected) {
+                    if(enough) {
+                        holder();
+                        clearInterval(computerRollInterval);
+                        return;
+                    }
+                    if(computerConsec) {
+                        setButtonDisabled(true);
+                        setUser2({bank:0,temp:0})
+                        setTimeout(()=>{
+                            setScore(0);
+                            userChanger();
+                            setButtonDisabled(false)
+                            setImage(null)
+                            setComputerConsec(false)
+                        },1000)
+                        clearInterval(computerRollInterval);
+                        return;
+                    } 
                     roller(); 
                     computerRolls += 1;
                 } else {
@@ -67,7 +101,9 @@ const Game = () =>{
         }else{
             setButtonDisabled(false)
         }
-    }, [activeUser]);
+    }, [activeUser,enough,computerConsec]);//enough and score were essential for computer part to know see when score has
+    //been updated and to know when it has won if it holds without completing the expected number of rolls
+    
     
     const numberGenerator = () => {
         return Math.ceil(Math.random()*6)
@@ -160,7 +196,12 @@ const Game = () =>{
                 return
             }
 
-            setUser2(prev=>({...prev,temp:prev.temp + score}))
+            setUser2(prev=>{
+                if(prev.bank + prev.temp + score >= target) {
+                    setEnough(true)
+                }
+                return {...prev,temp:prev.temp + score}
+            })
         }
     }
 
